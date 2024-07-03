@@ -1,3 +1,5 @@
+package quicksort;
+
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -92,7 +94,7 @@ public class DescendingOrder {
      * @param num The input integer to be sorted.
      * @return The integer with the numbers sorted in desc.
      */
-    private static int sortDescInJava(int num) {
+    public static int sortDescInJava(int num) {
         String[] array = String.valueOf(num).split("");
         Arrays.sort(array, Collections.reverseOrder());
         return Integer.valueOf(String.join("", array));
