@@ -3,8 +3,18 @@ package quicksort;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Initially this was a task from Codewars (Link: https://www.codewars.com/kata/5467e4d82edf8bbf40000155/java).
+ * The task was to create a function to sort the digits of an integer descending.
+ * I decided to manually implemented a quicksort algorithm for practice.
+ */
 public class DescendingOrder {
 
+    /**
+     * The main method which takes the input number, starts the quicksort and returns the result.
+     * @param num The input number
+     * @return The number with the digits in descending order.
+     */
     public static int sortDesc(final int num) {
 
         if (num < 0) {
@@ -62,7 +72,7 @@ public class DescendingOrder {
     }
 
     /**
-     * Alternative sorting method using Java built-in sort
+     * Alternative sorting method using Java built-in sort.
      * According to ChatGPT, "Arrays.sort()" uses a Dual-Pivot Quicksort algorithm
      * for primitive arrays (int, char, etc.) and a Timsort algorithm for Object arrays.
      * @param num The input integer to be sorted.
@@ -74,12 +84,23 @@ public class DescendingOrder {
         return Integer.valueOf(String.join("", array));
     }
 
+    /**
+     * Swaps two numbers within the given array.
+     * @param digits Input array
+     * @param i1 Array index of the first number
+     * @param i2 Array index of the second number
+     */
     private static void swap(int[] digits, int i1, int i2) {
         int temp = digits[i1];
         digits[i1] = digits[i2];
         digits[i2] = temp;
     }
 
+    /**
+     * Transforms an integer to an int[]
+     * @param num Input integer
+     * @return The int[]
+     */
     private static int[] intToArray(int num) {
         return Integer.toString(num).chars().map(c -> c - '0').toArray();
     }
