@@ -14,7 +14,7 @@ public class DescendingOrder {
         int[] digits = intToArray(num);
         quicksort(digits, 0, digits.length - 1);
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(digits.length);
         for (int digit : digits) {
             sb.append(digit);
         }
@@ -44,9 +44,6 @@ public class DescendingOrder {
                 while (j >= i) {
                     if (digits[j] > digits[p]) {
                         swap(digits, i, j);
-
-                        /* Break inner loop of j. Otherwise, if the loop continues and j finds again a "j > p",
-                        the new number j is again switched with the same number i as before. */
                         break;
                     }
                     j--; // Move left
