@@ -1,12 +1,12 @@
 package quicksort.benchmarks;
 
 import org.openjdk.jmh.annotations.*;
-import quicksort.DescendingOrder;
+import quicksort.QuickSort;
 
 import java.util.concurrent.TimeUnit;
 
 @State(Scope.Thread)
-public class DescendingOrderBenchmark {
+public class QuickSortBenchmark {
 
     private static final int NUMBER = 123456789;
 
@@ -17,7 +17,7 @@ public class DescendingOrderBenchmark {
     @Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
     @Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
     public void testSortDesc() {
-        DescendingOrder.sortDesc(NUMBER);
+        QuickSort.sortDesc(NUMBER);
     }
 
     @Benchmark
@@ -27,7 +27,7 @@ public class DescendingOrderBenchmark {
     @Warmup(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
     @Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
     public void testSortDescInJava() {
-        DescendingOrder.sortDescInJava(NUMBER);
+        QuickSort.sortDescInJava(NUMBER);
     }
 
     public static void main(String[] args) throws Exception {

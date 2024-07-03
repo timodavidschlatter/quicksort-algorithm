@@ -8,7 +8,7 @@ import java.util.Collections;
  * The task was to create a function to sort the digits of an integer descending.
  * I decided to manually implemented a quicksort algorithm for practice.
  */
-public class DescendingOrder {
+public class QuickSort {
 
     /**
      * The main method which takes the input number, starts the quicksort and returns the result.
