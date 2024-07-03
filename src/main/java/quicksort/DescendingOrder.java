@@ -31,16 +31,7 @@ public class DescendingOrder {
      */
     private static void quicksort(int[] digits, int left, int right) {
 
-        // Only one digit in the sub array.
-        if (right == left) {
-            return;
-        }
-
-        // Only two digits in the sub array
-        if (right - left == 1) {
-            if (digits[left] < digits[right]) {
-                swap(digits, left, right);
-            }
+        if (left >= right) {
             return;
         }
 
@@ -48,9 +39,9 @@ public class DescendingOrder {
         int i = p + 1; // The left pointer going right
         int j = right; // The right pointer going left
 
-        while (i <= j && i <= right) { // i can move right if: 1. i and j did not cross each other already 2. i is not at the end of the sub array
+        while (i <= j) {
             if (digits[i] <= digits[p]) {
-                while (j >= i && j > left) { // j can move right if: 1. i and j did not cross each other already 2. j should not touch the pivot element
+                while (j >= i) {
                     if (digits[j] > digits[p]) {
                         swap(digits, i, j);
 
@@ -64,23 +55,17 @@ public class DescendingOrder {
             i++; // Move right
         }
 
-        if (digits[j] > digits[p]) { // j > p
+        if (digits[j] > digits[p]) {
             swap(digits, j, p);
             p = j;
         }
 
-        if (p == left) { // Case 1: Pivot element is correct on the left hand site.
-            quicksort(digits, p + 1, right);
-        } else if (p == right) { // Case 2: Pivot element is correct on the right hand site.
-            quicksort(digits, left, p - 1);
-        } else { // Case 3: Pivot element was swapped in to the middle of array.
-            quicksort(digits, left, j - 1); // Left sub array
-            quicksort(digits, j + 1, right); // Right sub array
-        }
+        quicksort(digits, left, p - 1);
+        quicksort(digits, p + 1, right);
     }
 
     /**
-     * How sorting can be used with the implemented version in Java.
+     * Alternative sorting method using Java built-in sort
      * According to ChatGPT, "Arrays.sort()" uses a Dual-Pivot Quicksort algorithm
      * for primitive arrays (int, char, etc.) and a Timsort algorithm for Object arrays.
      * @param num The input integer to be sorted.
