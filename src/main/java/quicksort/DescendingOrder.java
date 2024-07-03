@@ -99,18 +99,6 @@ public class DescendingOrder {
     }
 
     private static int[] intToArray(int num) {
-        // Convert the integer to a string
-        String numStr = Integer.toString(num);
-
-        // Create an array of integers with the same length as the string
-        int[] digits = new int[numStr.length()];
-
-        // Iterate over each character in the string
-        for (int i = 0; i < numStr.length(); i++) {
-            // Convert the character to an integer and store it in the array
-            digits[i] = numStr.charAt(i) - '0';
-        }
-
-        return digits;
+        return Integer.toString(num).chars().map(c -> c - '0').toArray();
     }
 }
