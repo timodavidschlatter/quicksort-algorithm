@@ -1,0 +1,45 @@
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore node.js dependencies
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore build directories
+build/
+dist/
+
+# Ignore target folder IntellIJ
+target/
+
+# Ignore Python compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore Java compiled files
+*.class
+
+# Ignore macOS folder attributes
+.DS_Store
+
+# Ignore Windows thumbnail cache files
+Thumbs.db
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore JetBrains IDEs settings
+.idea/
+
+# Ignore temporary files created by text editors
+*~
+
+# Ignore any file named 'secret.txt'
+secret.txt
+
+# Ignore environment variable files
+.env
