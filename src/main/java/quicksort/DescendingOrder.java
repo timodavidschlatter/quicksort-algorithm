@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Initially this was a task from Codewars (Link: https://www.codewars.com/kata/5467e4d82edf8bbf40000155/java).
+ * Initially this was a kata from Codewars (Link: https://www.codewars.com/kata/5467e4d82edf8bbf40000155/java).
  * The task was to create a function to sort the digits of an integer descending.
  * I decided to manually implemented a quicksort algorithm for practice.
  */
