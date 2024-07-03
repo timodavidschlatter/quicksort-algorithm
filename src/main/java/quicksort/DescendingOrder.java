@@ -12,7 +12,7 @@ public class DescendingOrder {
         }
 
         int[] digits = intToArray(num);
-        recursion(digits, 0, digits.length - 1);
+        quicksort(digits, 0, digits.length - 1);
 
         StringBuilder sb = new StringBuilder();
         for (int i : digits) {
@@ -30,7 +30,7 @@ public class DescendingOrder {
      * @param startOfSubArray The start index of the array to sort in the recursion
      * @param endOfSubArray The end index of the array to sort in the recursion
      */
-    private static void recursion(int[] digits, int startOfSubArray, int endOfSubArray) {
+    private static void quicksort(int[] digits, int startOfSubArray, int endOfSubArray) {
 
         /* Nur ein Element in der Subliste (Beide Indexe zeigen auf das gleiche Element)
            Es gibt nichts zu sortieren. */
@@ -81,14 +81,14 @@ public class DescendingOrder {
 
         if (p == startOfSubArray) {
             // Case 2: Pivot Element ist ganz links richtig.
-            recursion(digits, p + 1, endOfSubArray);
+            quicksort(digits, p + 1, endOfSubArray);
         } else if (p == endOfSubArray) {
             // Case 3: Pivot Element ist ganz rechts richtig.
-            recursion(digits, startOfSubArray, p - 1); // Start ist der Anfang vom Array und Ende eins links neben dem Pivot
+            quicksort(digits, startOfSubArray, p - 1); // Start ist der Anfang vom Array und Ende eins links neben dem Pivot
         } else {
             // Case 1: Pivot Element wurde in die Mitte geswitcht.
-            recursion(digits, startOfSubArray, j - 1); // Linke Seite vom Pivot. Endet eins links neben dem Pivot.
-            recursion(digits, j + 1, endOfSubArray); // Rechte Seite vom Pivot. Endet am Schluss der Liste.
+            quicksort(digits, startOfSubArray, j - 1); // Linke Seite vom Pivot. Endet eins links neben dem Pivot.
+            quicksort(digits, j + 1, endOfSubArray); // Rechte Seite vom Pivot. Endet am Schluss der Liste.
         }
     }
 
