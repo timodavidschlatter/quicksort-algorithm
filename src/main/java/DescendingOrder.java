@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class DescendingOrder {
 
     public static int sortDesc(final int num) {
@@ -8,6 +11,7 @@ public class DescendingOrder {
         for (int i : digits) {
             sb.append(i);
         }
+
         int result = Integer.parseInt(sb.toString());
         System.out.println(result);
         return result;
@@ -38,7 +42,6 @@ public class DescendingOrder {
             return;
         }
 
-        /* Ab drei Elementen in der Subliste beginnt der Algorithmus. */
         int p = startOfSubArray; // Pivot Element (immer das erste Element)
         int i = p + 1; // Index vom linken Pointer i, welcher nach rechts durchläuft
         int j = endOfSubArray; // Index vom rechten Pointer j, welcher nach links durchläuft
@@ -82,6 +85,19 @@ public class DescendingOrder {
         }
     }
 
+    /**
+     * How sorting can be used with the implemented version in Java.
+     * According to ChatGPT, "Arrays.sort()" uses a Dual-Pivot Quicksort algorithm
+     * for primitive arrays (int, char, etc.) and a Timsort algorithm for Object arrays.
+     * @param num The input integer to be sorted.
+     * @return The integer with the numbers sorted in desc.
+     */
+    private static int sortDescInJava(int num) {
+        String[] array = String.valueOf(num).split("");
+        Arrays.sort(array, Collections.reverseOrder());
+        return Integer.valueOf(String.join("", array));
+    }
+
     private static void switchNumbers(int[] digits, int i1, int i2) {
         int temp = digits[i1];
         digits[i1] = digits[i2];
@@ -103,5 +119,4 @@ public class DescendingOrder {
 
         return digits;
     }
-
 }
