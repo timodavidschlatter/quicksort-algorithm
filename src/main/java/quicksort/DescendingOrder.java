@@ -15,80 +15,67 @@ public class DescendingOrder {
         quicksort(digits, 0, digits.length - 1);
 
         StringBuilder sb = new StringBuilder();
-        for (int i : digits) {
-            sb.append(i);
+        for (int digit : digits) {
+            sb.append(digit);
         }
 
-        int result = Integer.parseInt(sb.toString());
-        System.out.println(result);
-        return result;
+        return Integer.parseInt(sb.toString());
     }
 
     /**
      * Quicksort Algorithm (in-place)
+     * The pivot element is always the digit on the left.
      * @param digits The int[] to sort
-     * @param startOfSubArray The start index of the array to sort in the recursion
-     * @param endOfSubArray The end index of the array to sort in the recursion
+     * @param left The start index of the array to sort in the recursion
+     * @param right The end index of the array to sort in the recursion
      */
-    private static void quicksort(int[] digits, int startOfSubArray, int endOfSubArray) {
+    private static void quicksort(int[] digits, int left, int right) {
 
-        /* Nur ein Element in der Subliste (Beide Indexe zeigen auf das gleiche Element)
-           Es gibt nichts zu sortieren. */
-        if (endOfSubArray - startOfSubArray == 0) {
+        // Only one digit in the sub array.
+        if (right == left) {
             return;
         }
 
-        /*
-        Die Subliste hat zwei Elemente.
-        Falls das erste Element kleiner ist als das zweite: Nummern tauschen
-         */
-        if (endOfSubArray - startOfSubArray == 1) {
-            if (digits[startOfSubArray] < digits[endOfSubArray]) {
-                switchNumbers(digits, startOfSubArray, endOfSubArray);
+        // Only two digits in the sub array
+        if (right - left == 1) {
+            if (digits[left] < digits[right]) {
+                swap(digits, left, right);
             }
             return;
         }
 
-        int p = startOfSubArray; // Pivot Element (immer das erste Element)
-        int i = p + 1; // Index vom linken Pointer i, welcher nach rechts durchläuft
-        int j = endOfSubArray; // Index vom rechten Pointer j, welcher nach links durchläuft
+        int p = left; // Pivot element
+        int i = p + 1; // The left pointer going right
+        int j = right; // The right pointer going left
 
-        while (i <= j && i <= endOfSubArray) { // Bedingung um i nach rechts zu bewegen: Noch nicht überkreuzt und noch nicht am Ende vom Array.
+        while (i <= j && i <= right) { // i can move right if: 1. i and j did not cross each other already 2. i is not at the end of the sub array
+            if (digits[i] <= digits[p]) {
+                while (j >= i && j > left) { // j can move right if: 1. i and j did not cross each other already 2. j should not touch the pivot element
+                    if (digits[j] > digits[p]) {
+                        swap(digits, i, j);
 
-            if (digits[i] <= digits[p]) { // i < p
-
-                while (j >= i && j > startOfSubArray) { // Bedingung um j nach links zu bewegen: Noch nicht überkreuzt und vor dem Pivot Element anhalten.
-
-                    if (digits[j] > digits[p]) { // j > p
-
-                        switchNumbers(digits, i, j); // Zahlen tauschen
-                        break; // Innerer Loop von J muss abgebrochen werden, weil ansonsten, sollte j nochmals
-                               // j > p finden, wird das j mit dem gleichen i wie vorher getauscht.
+                        /* Break inner loop of j. Otherwise, if the loop continues and j finds again a "j > p",
+                        the new number j is again switched with the same number i as before. */
+                        break;
                     }
-
-                    j--; // Eine Zahl weiter nach links gehen.
+                    j--; // Move left
                 }
             }
-
-            i++; // Eine Zahl weiter nach rechts gehen.
+            i++; // Move right
         }
 
-        // Pivot Element muss getauscht werden.
         if (digits[j] > digits[p]) { // j > p
-            switchNumbers(digits, j, p);
-            p = j; // Das Pivot Element befindet sich jetzt am Index von j
+            swap(digits, j, p);
+            p = j;
         }
 
-        if (p == startOfSubArray) {
-            // Case 2: Pivot Element ist ganz links richtig.
-            quicksort(digits, p + 1, endOfSubArray);
-        } else if (p == endOfSubArray) {
-            // Case 3: Pivot Element ist ganz rechts richtig.
-            quicksort(digits, startOfSubArray, p - 1); // Start ist der Anfang vom Array und Ende eins links neben dem Pivot
-        } else {
-            // Case 1: Pivot Element wurde in die Mitte geswitcht.
-            quicksort(digits, startOfSubArray, j - 1); // Linke Seite vom Pivot. Endet eins links neben dem Pivot.
-            quicksort(digits, j + 1, endOfSubArray); // Rechte Seite vom Pivot. Endet am Schluss der Liste.
+        if (p == left) { // Case 1: Pivot element is correct on the left hand site.
+            quicksort(digits, p + 1, right);
+        } else if (p == right) { // Case 2: Pivot element is correct on the right hand site.
+            quicksort(digits, left, p - 1);
+        } else { // Case 3: Pivot element was swapped in to the middle of array.
+            quicksort(digits, left, j - 1); // Left sub array
+            quicksort(digits, j + 1, right); // Right sub array
         }
     }
 
@@ -105,7 +92,7 @@ public class DescendingOrder {
         return Integer.valueOf(String.join("", array));
     }
 
-    private static void switchNumbers(int[] digits, int i1, int i2) {
+    private static void swap(int[] digits, int i1, int i2) {
         int temp = digits[i1];
         digits[i1] = digits[i2];
         digits[i2] = temp;
