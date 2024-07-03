@@ -34,6 +34,7 @@ less worst case scenarios.
 ## Quicksort vs Mergesort vs Heapsort
 
 ![img.png](img.png)
+
 Source: ChatGPT
 
 ### Summary:
