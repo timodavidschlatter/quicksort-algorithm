@@ -56,7 +56,7 @@ public class DescendingOrderTest {
 
     @Test
     public void testNegativeNumber() {
-        assertThrows(NumberFormatException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             DescendingOrder.sortDesc(-123);
         });
     }

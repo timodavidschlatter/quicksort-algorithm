@@ -11,5 +11,4 @@ public class Main {
         for (int i : array)
             DescendingOrder.sortDesc(i);
     }
-
 }

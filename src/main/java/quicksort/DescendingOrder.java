@@ -6,6 +6,11 @@ import java.util.Collections;
 public class DescendingOrder {
 
     public static int sortDesc(final int num) {
+
+        if (num < 0) {
+            throw new IllegalArgumentException("Input number must be non-negative");
+        }
+
         int[] digits = intToArray(num);
         recursion(digits, 0, digits.length - 1);
 
