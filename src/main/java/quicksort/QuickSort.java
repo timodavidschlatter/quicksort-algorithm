@@ -22,7 +22,7 @@ public class QuickSort {
         }
 
         int[] digits = intToArray(num);
-        quicksort(digits, 0, digits.length - 1);
+        quickSort(digits, 0, digits.length - 1);
 
         StringBuilder sb = new StringBuilder(digits.length);
         for (int digit : digits) {
@@ -39,7 +39,7 @@ public class QuickSort {
      * @param left The start index of the array to sort in the recursion
      * @param right The end index of the array to sort in the recursion
      */
-    private static void quicksort(int[] digits, int left, int right) {
+    private static void quickSort(int[] digits, int left, int right) {
 
         if (left >= right) {
             return;
@@ -67,8 +67,8 @@ public class QuickSort {
             p = j;
         }
 
-        quicksort(digits, left, p - 1);
-        quicksort(digits, p + 1, right);
+        quickSort(digits, left, p - 1);
+        quickSort(digits, p + 1, right);
     }
 
     /**
