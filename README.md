@@ -37,7 +37,7 @@ less worst case scenarios.
 
 Source: ChatGPT
 
-### Summary:
+### Summary
 
 **Quicksort**: Efficient on average with O(n log n) time complexity, but can degrade to O(n^2) in the worst case if poorly implemented or with certain input patterns. It has low space complexity O(log n), making it suitable for in-place sorting.
 
